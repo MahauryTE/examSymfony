@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Parcourir{% endblock %}
+
+{% block body %}
+
+    <div class="content">
+        <div class="part">
+            <h1>Parcourir</h1>
+        </div>
+
+        <div class="part">
+            <div class="row">
+                {% for product in products %}
+                    <div class="card col-lg-3"
+                         style='background-image: url({{ product.image }})'>
+                        <div class="content-card">
+                            <h2>{{ product.name }}</h2>
+                            <p class="card-text">{{ product.description }}</p>
+                            <h2>
+                                {% if product.price == 0 %}
+                                    Gratuit
+                                {% else %}
+                                    {{ product.price }} €
+                                {% endif %}
+                            </h2>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+

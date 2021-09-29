@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WelcomeController!{% endblock %}
+
+{% block body %}
+
+    <div class="content">
+
+        <div class="part">
+            <h1>Accéder à mon compte</h1>
+        </div>
+
+        <div class="part">
+
+            <div class="row">
+                <div class="col-6">
+                    {{ render(url('app_login')) }}
+                </div>
+                <div class="col-6">
+                    {{ render(url('app_register')) }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

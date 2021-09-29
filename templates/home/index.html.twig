@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+    <div class="content">
+        <div class="part">
+            <h1>Tableau de bord</h1>
+            <a href="{{ path('product_add') }}">+ Ajouter un produit</a>
+        </div>
+
+        <div class="part">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Nom de l'objet</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Ajouté à</th>
+                    <th scope="col">Retirer de la vente</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    {% for product in products %}
+                    <tr>
+                        <th scope="row"><img src="{{ product.image }}" height="100px"></th>
+                        <th>{{ product.name }}</th>
+                        <td>
+                            {% if product.price == 0 %}
+                                Gratuit
+                            {% else %}
+                                {{ product.price }} €
+                            {% endif %}
+                        </td>
+                        <td>{{ product.addAt | show_date }}</td>
+                        <td>
+                            {% if product.status == false %}
+                                <a href="{{ path('product_visible', {id: product.id}) }}" class="btn btn-danger"
+                                   role="button">Retirer</a>
+
+                            {% else %}
+                                <a href="{{ path('product_visible', {id: product.id}) }}" class="btn btn-success"
+                                   role="button">Ajouter à la vente</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}
